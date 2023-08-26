@@ -1,0 +1,115 @@
+default_stages:
+  [commit, push, manual, prepare-commit-msg, post-merge, post-rewrite]
+default_install_hook_types:
+  [pre-commit, commit-msg, pre-push, post-rewrite, post-merge]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-ast
+      - id: check-added-large-files
+        args: [--maxkb=800]
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
+      - id: check-yaml
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.10.1
+    hooks:
+      - id: pyupgrade
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.5.0
+    hooks:
+      - id: yesqa
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-use-type-annotations
+      - id: python-no-log-warn
+      - id: python-check-blanket-noqa
+      - id: python-no-eval
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.5.1
+    hooks:
+      - id: mypy
+  - repo: https://github.com/asottile/dead
+    rev: v1.5.2
+    hooks:
+      - id: dead
+        args: ["--exclude", "tasks.py"]
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+        args: ["--all"]
+        language: system
+        pass_filenames: false
+      - id: cargo-check
+        args: ["--all-features", "--all-targets", "--workspace", "--"]
+        language: system
+      - id: clippy
+        name: clippy_fix
+        args: ["--fix", "--all-features", "--allow-staged", "--allow-dirty"]
+        language: system
+      - id: clippy
+        name: clippy_lint
+        args:
+          [
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings",
+            "-A",
+            "clippy::all",
+          ]
+        language: system
+  - repo: local
+    hooks:
+      - id: pytest
+        language: system
+        name: pytest
+        types: [python]
+        entry: .venv/bin/pytest
+        args:
+          - "tests/"
+          - "-m"
+          - "not network"
+          - "-n"
+          - "logical"
+        pass_filenames: false
+        always_run: true
+      - id: commit-msg-length
+        name: commit-msg-length
+        stages: [commit-msg]
+        language: pygrep
+        entry: '^.{8,50}(?:\n{2}|$)(?:.{0,72}(\n|$)){0,20}$'
+        args: ["--negate"]
+      - id: commit-msg
+        name: conventional-commit
+        stages: [commit-msg]
+        language: pygrep
+        entry: >-
+          ^(?:(?:Merge branch .{2,30} into .{2,30})
+          |(?:chore|test|build|docs|feat|fix|refactor|fixup|style|revert)(?:\(.{2,20}\))?!?: ).{0,45}(?:\n{2}|$)(?:.{0,72}(\n|$)){0,20}$
+        args: ["--negate"]
