@@ -11,8 +11,6 @@ repos:
       - id: check-added-large-files
         args: [--maxkb=800]
       - id: check-case-conflict
-      - id: check-executables-have-shebangs
-      - id: check-shebang-scripts-are-executable
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-toml
@@ -25,38 +23,6 @@ repos:
       - id: mixed-line-ending
       - id: sort-simple-yaml
       - id: trailing-whitespace
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
-    hooks:
-      - id: pyupgrade
-  - repo: https://github.com/asottile/yesqa
-    rev: v1.5.0
-    hooks:
-      - id: yesqa
-  - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-  - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.10.0
-    hooks:
-      - id: python-use-type-annotations
-      - id: python-no-log-warn
-      - id: python-check-blanket-noqa
-      - id: python-no-eval
-  - repo: https://github.com/psf/black
-    rev: 23.7.0
-    hooks:
-      - id: black
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.1
-    hooks:
-      - id: mypy
-  - repo: https://github.com/asottile/dead
-    rev: v1.5.2
-    hooks:
-      - id: dead
-        args: ["--exclude", "tasks.py"]
   - repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
     hooks:
@@ -86,19 +52,6 @@ repos:
         language: system
   - repo: local
     hooks:
-      - id: pytest
-        language: system
-        name: pytest
-        types: [python]
-        entry: .venv/bin/pytest
-        args:
-          - "tests/"
-          - "-m"
-          - "not network"
-          - "-n"
-          - "logical"
-        pass_filenames: false
-        always_run: true
       - id: commit-msg-length
         name: commit-msg-length
         stages: [commit-msg]
