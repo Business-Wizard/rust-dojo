@@ -103,5 +103,8 @@
     "terminal.integrated.shellIntegration.enabled": true,
     "window.zoomLevel": 0,
     "workbench.editor.pinnedTabSizing": "shrink",
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.authors.command": false,
+    "gitlens.codeLens.recentChange.command": false
 }
