@@ -13,17 +13,29 @@ fn is_prime(n: u32, primes: &Vec<u32>) -> bool {
 }
 
 pub fn nth(n: u32) -> u32 {
-    fn find_primes(count: u32, step: u32, primes: &mut Vec<u32>) {
-        if primes.len() < (count + 1) as usize {
-            if is_prime(step, primes) {
+    let mut primes = Vec::from([2]);
+
+    if n < 200 {
+        fn find_primes(count: u32, step: u32, primes: &mut Vec<u32>) {
+            if primes.len() < (count + 1) as usize {
+                if is_prime(step, primes) {
+                    primes.push(step);
+                }
+                find_primes(count, step + 1, primes);
+            }
+        }
+
+        find_primes(n, 2, &mut primes);
+    } else {
+        let mut step = 3;
+        while primes.len() < (n + 1) as usize {
+            if is_prime(step, &primes) {
                 primes.push(step);
             }
-            find_primes(count, step + 1, primes);
+            step += 1;
         }
     }
 
-    let mut primes = Vec::from([2]);
-    find_primes(n, 2, &mut primes);
     *primes.last().expect("No primes found")
 }
 #[cfg(test)]
