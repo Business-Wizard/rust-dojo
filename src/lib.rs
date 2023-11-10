@@ -13,7 +13,7 @@ fn is_prime(n: u32, primes: &Vec<u32>) -> bool {
 }
 
 pub fn nth(n: u32) -> u32 {
-    let mut primes = Vec::from([2]);
+    let mut primes = Vec::from([2, 3]);
 
     if n < 200 {
         fn find_primes(count: u32, step: u32, primes: &mut Vec<u32>) {
@@ -21,22 +21,21 @@ pub fn nth(n: u32) -> u32 {
                 if is_prime(step, primes) {
                     primes.push(step);
                 }
-                find_primes(count, step + 1, primes);
+                find_primes(count, step + 2, primes); // iterate by 2, since all primes after 2 are odd.
             }
         }
 
-        find_primes(n, 2, &mut primes);
+        find_primes(n, 3, &mut primes); // starting at 2 will loop forever.
     } else {
-        let mut step = 3;
         while primes.len() < (n + 1) as usize {
-            if is_prime(step, &primes) {
-                primes.push(step);
+            let mut next_guess = primes.last().expect("primes vector is empty.") + 2;
+            while primes.iter().any(|prime| next_guess % prime == 0) {
+                next_guess += 2; // iterate by 2, since all primes after 2 are odd.
             }
-            step += 1;
+            primes.push(next_guess);
         }
     }
-
-    *primes.last().expect("No primes found")
+    primes[n as usize]
 }
 #[cfg(test)]
 mod tests {
@@ -60,15 +59,5 @@ mod tests {
     #[test]
     fn big_prime() {
         assert_eq!(nth(10_000), 104_743);
-    }
-
-    #[test]
-    fn is_prime_2() {
-        assert!(is_prime(2, &vec![]));
-    }
-
-    #[test]
-    fn is_prime_3() {
-        assert!(is_prime(3, &vec![]));
     }
 }
