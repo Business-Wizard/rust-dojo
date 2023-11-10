@@ -8,7 +8,9 @@ fn is_prime(n: u32, primes: &Vec<u32>) -> bool {
 }
 
 pub fn nth(n: u32) -> u32 {
-    let mut primes = Vec::from([2, 3]);
+    let mut primes = Vec::with_capacity(n.max(2) as usize);
+    primes.push(2);
+    primes.push(3);
 
     if n < 200 {
         fn find_primes(count: u32, step: u32, primes: &mut Vec<u32>) {
