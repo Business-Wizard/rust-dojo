@@ -4,12 +4,7 @@ fn is_prime(n: u32, primes: &Vec<u32>) -> bool {
     if n <= 1 {
         return false;
     }
-    for p in primes {
-        if n % p == 0 {
-            return false;
-        }
-    }
-    true
+    primes.iter().all(|prime| n % prime != 0)
 }
 
 pub fn nth(n: u32) -> u32 {
