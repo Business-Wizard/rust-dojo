@@ -1,13 +1,14 @@
 #![allow(unused_variables, dead_code, unused_mut, unused_imports)]
 
 pub fn is_armstrong_number(num: u32) -> bool {
-    let mut digits = Vec::new();
-    num.to_string()
+    let mut digits: Vec<u128> = num
+        .to_string()
         .chars()
-        .for_each(|char| digits.push(char.to_digit(10).unwrap()));
-    let length = digits.len();
-    let maybe_armstrong: u32 = digits.iter().map(|digit| digit.pow(length as u32)).sum();
-    maybe_armstrong == num
+        .map(|char| (char.to_digit(10).unwrap() as u128))
+        .collect();
+    let length = digits.len() as u32;
+    let maybe_armstrong: Option<u128> = digits.iter().map(|&digit| digit.checked_pow(length)).sum();
+    maybe_armstrong == Some(num as u128)
 }
 
 #[cfg(test)]
@@ -22,5 +23,15 @@ mod tests {
     #[test]
     fn double_digit_numbers_are_not_armstrong_numbers() {
         (10..=99).all(|num| !is_armstrong_number(num));
+    }
+
+    #[test]
+    fn ten_digit_non_armstrong_number() {
+        assert!(!is_armstrong_number(3_999_999_999));
+    }
+
+    #[test]
+    fn properly_handles_overflow() {
+        assert!(!is_armstrong_number(4_106_098_957));
     }
 }
