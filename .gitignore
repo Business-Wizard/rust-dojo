@@ -1,4 +1,5 @@
 secrets.*
+.vscode/settings.json
 
 
 # Rust Cargo
