@@ -10,17 +10,7 @@
 	],
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/devcontainers/features/python:1": {},
-		"ghcr.io/devcontainers-contrib/features/bandit:2": {},
-		"ghcr.io/devcontainers-contrib/features/black:2": {},
-		"ghcr.io/devcontainers-contrib/features/cookiecutter:2": {},
-		"ghcr.io/devcontainers-contrib/features/isort:2": {},
-		"ghcr.io/devcontainers-contrib/features/mypy:2": {},
-		"ghcr.io/devcontainers-contrib/features/nox:2": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
-		"ghcr.io/devcontainers-contrib/features/yapf:2": {},
-		"ghcr.io/dhoeric/features/google-cloud-cli:1": {},
-		"ghcr.io/warrenbuckley/codespace-features/sqlite:1": {}
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
 	},
 	"customizations": {
 		"vscode": {
@@ -29,14 +19,8 @@
 				"davidanson.vscode-markdownlint",
 				"eamodio.gitlens",
 				"ms-azuretools.vscode-docker",
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"ms-vscode-remote.remote-containers",
-				"njpwerner.autodocstring",
-				"sourcery.sourcery",
 				"usernamehw.errorlens",
-				"vscode-icons-team.vscode-icons",
-				"charliermarsh.ruff"
+				"vscode-icons-team.vscode-icons"
 			]
 		}
 	}
