@@ -1,14 +1,32 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+#[derive(Debug)]
+pub struct Duration;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+impl From<u64> for Duration {
+    fn from(s: u64) -> Self {
+        todo!("s, measured in seconds: {s}")
     }
 }
+
+pub trait Planet {
+    fn years_during(d: &Duration) -> f64 {
+        todo!("convert a duration ({d:?}) to the number of years on this planet for that duration");
+    }
+}
+
+pub struct Mercury;
+pub struct Venus;
+pub struct Earth;
+pub struct Mars;
+pub struct Jupiter;
+pub struct Saturn;
+pub struct Uranus;
+pub struct Neptune;
+
+impl Planet for Mercury {}
+impl Planet for Venus {}
+impl Planet for Earth {}
+impl Planet for Mars {}
+impl Planet for Jupiter {}
+impl Planet for Saturn {}
+impl Planet for Uranus {}
+impl Planet for Neptune {}
