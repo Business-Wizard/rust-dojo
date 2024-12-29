@@ -2,6 +2,14 @@
 
 ## Cargo
 
+### Workspace
+
+Run tests for single crate:
+
+```sh
+cargo test -p crate_name
+```
+
 ### documentation comments
 
 View code docs with `cargo doc --open`.
