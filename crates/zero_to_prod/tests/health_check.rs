@@ -15,5 +15,5 @@ async fn health_check_works() {
 }
 
 async fn spawn_app() -> Result<(), std::io::Error> {
-    rust_dojo::run().await
+    zero_to_prod::run().await
 }
