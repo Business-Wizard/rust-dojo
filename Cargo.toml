@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/zero_to_prod"]
+members = ["crates/zero_to_prod", "crates/exercism"]
 
 
 [profile.dev]
