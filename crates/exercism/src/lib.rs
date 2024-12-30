@@ -53,78 +53,105 @@ pub trait Planet {
     fn years_during(duration: &Duration) -> f64 {
         todo!("convert a duration ({duration:?}) to the number of years on this planet for that duration");
     }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        todo!("return the ratio of the orbital period of this planet to that of Earth");
+    }
 }
 
 impl Planet for Mercury {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_mercury_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Mercury).unwrap() * SECONDS_PER_EARTH_YEAR;
-
+        let seconds_per_mercury_year = SECONDS_PER_EARTH_YEAR * Mercury::orbital_ratio_to_earth();
         duration_seconds / seconds_per_mercury_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Mercury).unwrap()
     }
 }
 impl Planet for Venus {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_venus_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Venus).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_venus_year = SECONDS_PER_EARTH_YEAR * Venus::orbital_ratio_to_earth();
         duration_seconds / seconds_per_venus_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Venus).unwrap()
     }
 }
 impl Planet for Earth {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_earth_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Earth).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_earth_year = SECONDS_PER_EARTH_YEAR * Earth::orbital_ratio_to_earth();
         duration_seconds / seconds_per_earth_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Earth).unwrap()
     }
 }
 impl Planet for Mars {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_mars_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Mars).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_mars_year = SECONDS_PER_EARTH_YEAR * Mars::orbital_ratio_to_earth();
         duration_seconds / seconds_per_mars_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Mars).unwrap()
     }
 }
 impl Planet for Jupiter {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_jupiter_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Jupiter).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_jupiter_year = SECONDS_PER_EARTH_YEAR * Jupiter::orbital_ratio_to_earth();
         duration_seconds / seconds_per_jupiter_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Jupiter).unwrap()
     }
 }
 impl Planet for Saturn {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_saturn_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Saturn).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_saturn_year = SECONDS_PER_EARTH_YEAR * Saturn::orbital_ratio_to_earth();
         duration_seconds / seconds_per_saturn_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Saturn).unwrap()
     }
 }
 impl Planet for Uranus {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_uranus_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Uranus).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_uranus_year = SECONDS_PER_EARTH_YEAR * Uranus::orbital_ratio_to_earth();
         duration_seconds / seconds_per_uranus_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Uranus).unwrap()
     }
 }
 impl Planet for Neptune {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
-        let seconds_per_neptune_year =
-            planet_to_earth_mapping.get(&PlanetEnum::Neptune).unwrap() * SECONDS_PER_EARTH_YEAR;
+        let seconds_per_neptune_year = SECONDS_PER_EARTH_YEAR * Neptune::orbital_ratio_to_earth();
         duration_seconds / seconds_per_neptune_year
+    }
+
+    fn orbital_ratio_to_earth() -> f64 {
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        *planet_to_earth_mapping.get(&PlanetEnum::Neptune).unwrap()
     }
 }
