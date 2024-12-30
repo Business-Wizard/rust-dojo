@@ -77,7 +77,9 @@ impl Planet for Venus {
 impl Planet for Earth {
     fn years_during(duration: &Duration) -> f64 {
         let duration_seconds = duration.time_in_seconds as f64;
-        let seconds_per_earth_year = SECONDS_PER_EARTH_YEAR;
+        let planet_to_earth_mapping = create_planet_to_earth_orbital_period_ratio_mapping();
+        let seconds_per_earth_year =
+            planet_to_earth_mapping.get(&PlanetEnum::Earth).unwrap() * SECONDS_PER_EARTH_YEAR;
         duration_seconds / seconds_per_earth_year
     }
 }
