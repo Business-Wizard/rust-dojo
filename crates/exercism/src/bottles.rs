@@ -7,6 +7,10 @@ pub fn verse(num: u32) -> String {
             "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
             Take one down and pass it around, {next_num} {next_container} of beer on the wall.\n"
         ),
+        1 => format!(
+            "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
+            Take it down and pass it around, no more bottles of beer on the wall.\n"
+        ),
         _ => todo!(),
     }
 }

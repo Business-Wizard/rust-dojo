@@ -26,3 +26,12 @@ fn verse_2_bottles_should_handle_noun_endings() {
         .to_string();
     assert_eq!(expected, actual);
 }
+
+#[test]
+fn verse_1_bottle_should_handle_noun_endings() {
+    let actual = bottles::verse(1);
+    let expected = "1 bottle of beer on the wall, 1 bottle of beer.\n\
+        Take it down and pass it around, no more bottles of beer on the wall.\n"
+        .to_string();
+    assert_eq!(expected, actual);
+}
