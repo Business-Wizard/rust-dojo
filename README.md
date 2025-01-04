@@ -32,15 +32,23 @@ then in the test modules needing, use the common module.
 mod common;
 ```
 
-## Cargo
+### Running tests
 
-### Workspace
+Run tests for a single module file:
+
+```sh
+cargo test --test test_file_name
+```
 
 Run tests for single crate:
 
 ```sh
 cargo test -p crate_name
 ```
+
+## Cargo
+
+### Workspace
 
 ### documentation comments
 
