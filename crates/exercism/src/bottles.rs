@@ -1,15 +1,24 @@
 pub fn verse(num: u32) -> String {
     let next_num = num - 1;
+    let current_container = container(num);
+    let next_container = container(next_num);
     match num {
         3..=99 => format!(
-            "{num} bottles of beer on the wall, {num} bottles of beer.\n\
-            Take one down and pass it around, {next_num} bottles of beer on the wall.\n",
+            "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
+            Take one down and pass it around, {next_num} {next_container} of beer on the wall.\n"
         ),
         2 => format!(
-            "{num} bottles of beer on the wall, {num} bottles of beer.\n\
-            Take one down and pass it around, {next_num} bottle of beer on the wall.\n",
+            "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
+            Take one down and pass it around, {next_num} {next_container} of beer on the wall.\n"
         ),
         _ => todo!(),
+    }
+}
+
+fn container(num: u32) -> String {
+    match num {
+        1 => "bottle".to_string(),
+        _ => "bottles".to_string(),
     }
 }
 
