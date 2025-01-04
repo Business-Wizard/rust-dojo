@@ -1,10 +1,9 @@
 pub fn verse(num: u32) -> String {
+    let next_num = num - 1;
     match num {
         3..=99 => format!(
-            "{0} bottles of beer on the wall, {0} bottles of beer.\n\
-            Take one down and pass it around, {1} bottles of beer on the wall.\n",
-            num,
-            num - 1
+            "{num} bottles of beer on the wall, {num} bottles of beer.\n\
+            Take one down and pass it around, {next_num} bottles of beer on the wall.\n",
         ),
         _ => todo!(),
     }
