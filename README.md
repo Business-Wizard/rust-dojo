@@ -1,5 +1,37 @@
 #
 
+## Tests
+
+### private/public
+
+private/unit tests: create a test module in the same file as the code.
+
+```rust
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+```
+
+public api tests: create a test module in a separate file.
+
+### test code utils
+
+tests
+└── common
+    └── mod.rs
+
+then in the test modules needing, use the common module.
+
+```rust
+mod common;
+```
+
 ## Cargo
 
 ### Workspace
