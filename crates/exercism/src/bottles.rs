@@ -4,13 +4,9 @@ pub fn verse(num: u32) -> String {
     let count_phrase = count_phrase(num);
     let next_container = container(num - 1);
     match num {
-        2..=99 => format!(
+        1..=99 => format!(
             "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
             Take {pronoun} down and pass it around, {count_phrase} {next_container} of beer on the wall.\n"
-        ),
-        1 => format!(
-            "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
-            Take {pronoun} down and pass it around, {count_phrase} bottles of beer on the wall.\n"
         ),
         _ => todo!(),
     }
