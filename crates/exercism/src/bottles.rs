@@ -1,9 +1,9 @@
-pub fn sing(_start: u32, _end: u32) -> String {
-    "99 bottles of beer on the wall, 99 bottles of beer.\n\
-    Take one down and pass it around, 98 bottles of beer on the wall.\n\n\
-    98 bottles of beer on the wall, 98 bottles of beer.\n\
-    Take one down and pass it around, 97 bottles of beer on the wall.\n"
-        .to_string()
+pub fn sing(start: u32, end: u32) -> String {
+    let mut verses = vec![];
+    for i in (end..=start).rev() {
+        verses.push(verse(i));
+    }
+    verses.join("\n")
 }
 
 pub fn verse(num: u32) -> String {
