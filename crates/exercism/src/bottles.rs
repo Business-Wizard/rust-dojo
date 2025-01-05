@@ -9,11 +9,18 @@ pub fn verse(num: u32) -> String {
             "{count_phrase} {current_container} of beer on the wall, {count_phrase} {current_container} of beer.\n\
             Take {pronoun} down and pass it around, {next_count_phrase} {next_container} of beer on the wall.\n"
         ),
-        0 => format!(
-            "No more {current_container} of beer on the wall, {count_phrase} {current_container} of beer.\n\
-            Go to the store and buy some more, {next_count_phrase} {next_container} of beer on the wall.\n"),
+        0 => format!("{0} {current_container} of beer on the wall, {count_phrase} {current_container} of beer.\n\
+            Go to the store and buy some more, {next_count_phrase} {next_container} of beer on the wall.\n",
+            capitalize_first_letter(&count_phrase)),
         _ => todo!(),
     }
+}
+
+fn capitalize_first_letter(string_slice: &str) -> String {
+    let mut chars = string_slice.chars();
+    let first_char = chars.next().unwrap().to_uppercase();
+    let rest_of_chars: String = chars.collect();
+    format!("{}{}", first_char, rest_of_chars)
 }
 
 fn generate_pronoun(num: u32) -> String {
