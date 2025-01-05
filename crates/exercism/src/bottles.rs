@@ -1,9 +1,9 @@
 pub fn sing(start: u32, end: u32) -> String {
-    let reversed_num_range = (end..=start).rev(); // rust ranges must be smaller..greater
-    let verse_iter = reversed_num_range.map(verse);
-    let verse_vec: Vec<String> = verse_iter.collect();
-    let verses_str: String = verse_vec.join("\n");
-    verses_str
+    (end..=start)
+        .rev()
+        .map(verse)
+        .collect::<Vec<String>>()
+        .join("\n")
 }
 
 pub fn verse(num: u32) -> String {
