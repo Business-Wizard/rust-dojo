@@ -35,3 +35,12 @@ fn verse_1_bottle_should_handle_noun_endings() {
         .to_string();
     assert_eq!(expected, actual);
 }
+
+#[test]
+fn verse_0_bottles() {
+    let actual = bottles::verse(0);
+    let expected = "No more bottles of beer on the wall, no more bottles of beer.\n\
+        Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+        .to_string();
+    assert_eq!(expected, actual);
+}

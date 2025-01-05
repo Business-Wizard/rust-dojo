@@ -8,6 +8,8 @@ pub fn verse(num: u32) -> String {
             "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
             Take {pronoun} down and pass it around, {count_phrase} {next_container} of beer on the wall.\n"
         ),
+        0 => "No more bottles of beer on the wall, no more bottles of beer.\n\
+            Go to the store and buy some more, 99 bottles of beer on the wall.\n".to_string(),
         _ => todo!(),
     }
 }
@@ -36,6 +38,7 @@ fn generate_next_container(num: u32) -> String {
 fn generate_count_phrase(num: u32) -> String {
     match num {
         1 => "no more".to_string(),
+        0 => "99".to_string(),
         _ => (num - 1).to_string(),
     }
 }
