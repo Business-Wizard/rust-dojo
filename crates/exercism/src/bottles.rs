@@ -1,3 +1,11 @@
+pub fn sing(_start: u32, _end: u32) -> String {
+    "99 bottles of beer on the wall, 99 bottles of beer.\n\
+    Take one down and pass it around, 98 bottles of beer on the wall.\n\n\
+    98 bottles of beer on the wall, 98 bottles of beer.\n\
+    Take one down and pass it around, 97 bottles of beer on the wall.\n"
+        .to_string()
+}
+
 pub fn verse(num: u32) -> String {
     let current_container = generate_current_container(num);
     let pronoun = generate_pronoun(num);
@@ -57,8 +65,4 @@ fn generate_next_container(num: u32) -> String {
         2 => "bottle".to_string(),
         _ => "bottles".to_string(),
     }
-}
-
-pub fn sing(_start: u32, _end: u32) -> String {
-    todo!()
 }

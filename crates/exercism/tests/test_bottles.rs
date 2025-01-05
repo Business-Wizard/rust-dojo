@@ -1,3 +1,18 @@
+mod multiple_verses {
+    use exercism::bottles;
+
+    #[test]
+    fn first_two_verses() {
+        let actual = bottles::sing(99, 98);
+        let expected = "99 bottles of beer on the wall, 99 bottles of beer.\n\
+            Take one down and pass it around, 98 bottles of beer on the wall.\n\n\
+            98 bottles of beer on the wall, 98 bottles of beer.\n\
+            Take one down and pass it around, 97 bottles of beer on the wall.\n"
+            .to_string();
+        assert_eq!(expected, actual);
+    }
+}
+
 mod single_verses {
     use exercism::bottles;
 
