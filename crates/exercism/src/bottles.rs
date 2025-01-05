@@ -1,9 +1,9 @@
 pub fn sing(start: u32, end: u32) -> String {
-    let mut verses = vec![];
-    for i in (end..=start).rev() {
-        verses.push(verse(i));
-    }
-    verses.join("\n")
+    let vers_num_range = (end..=start).rev();
+    let verse_iter = vers_num_range.map(verse);
+    let verse_vec: Vec<String> = verse_iter.collect();
+    let verses_str: String = verse_vec.join("\n");
+    verses_str
 }
 
 pub fn verse(num: u32) -> String {
