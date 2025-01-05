@@ -26,6 +26,19 @@ mod multiple_verses {
             .to_string();
         assert_eq!(expected, actual);
     }
+
+    #[test]
+    fn middle_verses() {
+        let actual = bottles::sing(50, 48);
+        let expected = "50 bottles of beer on the wall, 50 bottles of beer.\n\
+            Take one down and pass it around, 49 bottles of beer on the wall.\n\n\
+            49 bottles of beer on the wall, 49 bottles of beer.\n\
+            Take one down and pass it around, 48 bottles of beer on the wall.\n\n\
+            48 bottles of beer on the wall, 48 bottles of beer.\n\
+            Take one down and pass it around, 47 bottles of beer on the wall.\n"
+            .to_string();
+        assert_eq!(expected, actual);
+    }
 }
 
 mod single_verses {
