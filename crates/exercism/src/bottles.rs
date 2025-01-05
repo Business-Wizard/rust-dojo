@@ -2,7 +2,7 @@ pub fn verse(num: u32) -> String {
     let current_container = generate_current_container(num);
     let pronoun = generate_pronoun(num);
     let count_phrase = generate_count_phrase(num);
-    let next_container = generate_current_container(num - 1);
+    let next_container = generate_next_container(num);
     match num {
         1..=99 => format!(
             "{num} {current_container} of beer on the wall, {num} {current_container} of beer.\n\
@@ -22,6 +22,13 @@ fn generate_pronoun(num: u32) -> String {
 fn generate_current_container(num: u32) -> String {
     match num {
         1 => "bottle".to_string(),
+        _ => "bottles".to_string(),
+    }
+}
+
+fn generate_next_container(num: u32) -> String {
+    match num {
+        2 => "bottle".to_string(),
         _ => "bottles".to_string(),
     }
 }
