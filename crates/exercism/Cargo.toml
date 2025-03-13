@@ -8,3 +8,4 @@ path = "src/lib.rs"
 
 
 [dependencies]
+time = "0.3.39"
