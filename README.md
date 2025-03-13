@@ -75,3 +75,11 @@ opt-level = 0
 [profile.release]
 opt-level = 3
 ```
+
+## References; Mutation
+
+Interior mutability: a design pattern in Rust that allows you to mutate data even when there are shared references to that data.
+
+Two typical categories:
+get mutable ref via a shared ref: Mutex, RefCell
+mutate a value via a shared ref: UnsafeCell
