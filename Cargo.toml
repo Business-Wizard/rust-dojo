@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/zero_to_prod", "crates/exercism"]
+members = ["crates/zero_to_prod", "crates/exercism", "crates/free_practice"]
 
 
 [profile.dev]
