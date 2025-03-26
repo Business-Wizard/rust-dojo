@@ -40,7 +40,13 @@ Run tests for a single module file:
 cargo test --test test_file_name
 ```
 
-Run tests for single crate:
+Run unit tests for a sub-module being worked on:
+
+```sh
+cargo test --lib {module_name}
+```
+
+Run integration tests for single crate:
 
 ```sh
 cargo test -p crate_name
