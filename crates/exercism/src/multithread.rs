@@ -42,12 +42,17 @@ pub fn sum_of_squares_with_multi_thread(data: &[u32]) -> u128 {
 }
 
 fn set_thread_count(data_size: u32) -> usize {
-    let max_threads = 16;
     if data_size <= 100 {
         return 1;
     }
+
+    const MAX_THREADS: usize = 16;
     let log_2 = (data_size as f64).log2().trunc() as usize;
-    log_2.max(1).min(max_threads)
+    match log_2 {
+        0..=1 => 1_usize,
+        2..=MAX_THREADS => log_2,
+        _ => MAX_THREADS,
+    }
 }
 
 fn setup_thread_pool(data: &[u32], thread_count: usize) -> Vec<std::thread::JoinHandle<u128>> {
