@@ -51,23 +51,15 @@ fn set_thread_count(data_size: u32) -> u32 {
 }
 
 fn setup_thread_pool(data: &[u32], thread_count: u32) -> Vec<std::thread::JoinHandle<u128>> {
-    let range_size: u32 = data.len() as u32;
-    dbg!(range_size);
-    let chunk_size: u32 = range_size / thread_count;
+    let chunk_size = (data.len() as u32 / thread_count) as usize;
     dbg!(chunk_size);
-
-    let indexes = (0..range_size).step_by(chunk_size as usize);
-    let indexes = indexes.chain(std::iter::once(range_size));
-    let index_pairs = indexes.clone().zip(indexes.skip(1));
-
-    let mut thread_pool = vec![];
-    for (start_idx, end_idx) in index_pairs {
-        let data_chunk = data[start_idx as usize..end_idx as usize].to_vec();
-        let handle: thread::JoinHandle<u128> =
-            std::thread::spawn(move || data_chunk.into_iter().map(|x| (x as u128).pow(2)).sum());
-        thread_pool.push(handle);
-    }
-    thread_pool
+    let chunks = data.chunks(chunk_size);
+    chunks
+        .map(|chunk| {
+            let chunk = chunk.to_vec();
+            thread::spawn(move || chunk.iter().map(|&x| (x as u128).pow(2)).sum())
+        })
+        .collect()
 }
 
 #[cfg(test)]
