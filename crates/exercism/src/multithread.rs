@@ -1,7 +1,7 @@
 use std::thread;
 
-pub fn sum_of_squares_with_single_thread(data: Vec<u32>) -> u64 {
-    data.into_iter().map(|x| (x as u64).pow(2)).sum()
+pub fn sum_of_squares_with_single_thread(data: &[u32]) -> u64 {
+    data.iter().map(|x| (*x as u64).pow(2)).sum()
 }
 
 #[cfg(test)]
@@ -11,8 +11,8 @@ mod single_thread_tests {
 
     #[test]
     fn test_single() {
-        let input: Vec<u32> = vec![1; 1];
-        let actual = sum_of_squares_with_single_thread(input);
+        let input = vec![1; 1];
+        let actual = sum_of_squares_with_single_thread(&input);
         let expected = 1;
         assert_eq!(actual, expected);
     }
@@ -20,13 +20,13 @@ mod single_thread_tests {
     #[test]
     fn test_two() {
         let input: Vec<u32> = vec![1; 2];
-        let actual = sum_of_squares_with_single_thread(input);
+        let actual = sum_of_squares_with_single_thread(&input);
         let expected = 2;
         assert_eq!(actual, expected);
     }
 }
 
-pub fn sum_of_squares_with_multi_thread(data: Vec<u32>) -> u128 {
+pub fn sum_of_squares_with_multi_thread(data: &[u32]) -> u128 {
     let data_size = data.len() as u32;
     let thread_count = set_thread_count(data_size);
     dbg!(thread_count);
@@ -50,7 +50,7 @@ fn set_thread_count(data_size: u32) -> u32 {
     log_2.max(1).min(max_threads)
 }
 
-fn setup_thread_pool(data: Vec<u32>, thread_count: u32) -> Vec<std::thread::JoinHandle<u128>> {
+fn setup_thread_pool(data: &[u32], thread_count: u32) -> Vec<std::thread::JoinHandle<u128>> {
     let range_size: u32 = data.len() as u32;
     dbg!(range_size);
     let chunk_size: u32 = range_size / thread_count;
@@ -78,7 +78,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_single() {
         let input = vec![1; 1];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 1;
         assert_eq!(actual, expected);
     }
@@ -86,7 +86,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_two() {
         let input = vec![1; 2];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 2;
         assert_eq!(actual, expected);
     }
@@ -94,7 +94,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_hundred() {
         let input: Vec<u32> = vec![1; 100];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 100;
         assert_eq!(actual, expected);
     }
@@ -102,7 +102,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_two_hundred() {
         let input: Vec<u32> = vec![1; 200];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 200;
         assert_eq!(actual, expected);
     }
@@ -110,7 +110,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_thousand() {
         let input: Vec<u32> = vec![1; 1000];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 1000;
         assert_eq!(actual, expected);
     }
@@ -118,7 +118,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_ten_thousand() {
         let input: Vec<u32> = vec![1; 10_000];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 10_000;
         assert_eq!(actual, expected);
     }
@@ -126,7 +126,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_hundred_thousand() {
         let input: Vec<u32> = vec![1; 100_000];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 100_000;
         assert_eq!(actual, expected);
     }
@@ -134,7 +134,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_million() {
         let input: Vec<u32> = vec![1; 1_000_000];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 1_000_000;
         assert_eq!(actual, expected);
     }
@@ -142,7 +142,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_ten_million() {
         let input: Vec<u32> = vec![1; 10_000_000];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 10_000_000;
         assert_eq!(actual, expected);
     }
@@ -150,7 +150,7 @@ mod multi_thread_tests_stub_data {
     #[test]
     fn test_hundred_million() {
         let input: Vec<u32> = vec![1; 100_000_000];
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 100_000_000;
         assert_eq!(actual, expected);
     }
@@ -164,7 +164,7 @@ mod multi_thread_tests_range_data {
     #[test]
     fn test_single() {
         let input: Vec<u32> = (2..3).collect();
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 4;
         assert_eq!(actual, expected);
     }
@@ -172,7 +172,7 @@ mod multi_thread_tests_range_data {
     #[test]
     fn test_two() {
         let input: Vec<u32> = (2..4).collect();
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 13;
         assert_eq!(actual, expected);
     }
@@ -180,7 +180,7 @@ mod multi_thread_tests_range_data {
     #[test]
     fn test_million() {
         let input: Vec<u32> = (1..=1_000_00).collect();
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 333_338_333_350_000;
         assert_eq!(actual, expected);
     }
@@ -188,7 +188,7 @@ mod multi_thread_tests_range_data {
     #[test]
     fn test_ten_million() {
         let input: Vec<u32> = (1..=10_000_000).collect();
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 333_333_383_333_335_000_000;
         assert_eq!(actual, expected);
     }
@@ -196,7 +196,7 @@ mod multi_thread_tests_range_data {
     #[test]
     fn test_hundred_million() {
         let input: Vec<u32> = (1..=100_000_000).collect();
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 333_333_338_333_333_350_000_000;
         assert_eq!(actual, expected);
     }
@@ -204,16 +204,16 @@ mod multi_thread_tests_range_data {
     #[test]
     fn test_billion() {
         let input: Vec<u32> = (1..=1_000_000_000).collect();
-        let actual = sum_of_squares_with_multi_thread(input);
+        let actual = sum_of_squares_with_multi_thread(&input);
         let expected = 333_333_333_833_333_333_500_000_000;
         assert_eq!(actual, expected);
     }
 
     #[test]
     fn test_billion_runtime() {
-        let input = (1..=1_000_000_000).collect();
+        let input = (1..=1_000_000_000).collect::<Vec<u32>>();
         let start = time::Instant::now();
-        let _ = sum_of_squares_with_multi_thread(input);
+        let _ = sum_of_squares_with_multi_thread(&input);
         let duration = start.elapsed();
         let expected = time::Duration::from_secs(5);
         println!("Duration: {:?}", duration);
