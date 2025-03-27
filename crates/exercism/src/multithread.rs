@@ -30,7 +30,6 @@ mod single_thread_tests {
 pub fn sum_of_squares_with_multi_thread(data: &[u32]) -> u128 {
     let data_size = data.len() as u32;
     let thread_count = set_thread_count(data_size);
-    dbg!(thread_count);
     if thread_count == 1 {
         return sum_of_squares_with_single_thread(data) as u128;
     }
@@ -53,7 +52,6 @@ fn set_thread_count(data_size: u32) -> usize {
 
 fn setup_thread_pool(data: &[u32], thread_count: usize) -> Vec<std::thread::JoinHandle<u128>> {
     let chunk_size = (data.len() as u32 / thread_count as u32) as usize;
-    dbg!(chunk_size);
     let chunks = data.chunks(chunk_size);
     chunks
         .map(|chunk| {
