@@ -209,7 +209,7 @@ mod multi_thread_tests_range_data {
     fn test_billion_runtime() {
         let input = (1..=1_000_000_000).collect::<Vec<u32>>();
         let start = time::Instant::now();
-        let _ = sum_of_squares_with_multi_thread(&input);
+        sum_of_squares_with_multi_thread(&input);
         let duration = start.elapsed();
         let expected = time::Duration::from_secs(5);
         println!("Duration: {:?}", duration);
