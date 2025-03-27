@@ -1,3 +1,4 @@
+use std::sync::Arc;
 use std::thread;
 
 pub fn sum_of_squares_with_single_thread(data: &[u32]) -> u64 {
@@ -56,7 +57,7 @@ fn setup_thread_pool(data: &[u32], thread_count: u32) -> Vec<std::thread::JoinHa
     let chunks = data.chunks(chunk_size);
     chunks
         .map(|chunk| {
-            let chunk = chunk.to_vec();
+            let chunk: Arc<[u32]> = Arc::from(chunk);
             thread::spawn(move || chunk.iter().map(|&x| (x as u128).pow(2)).sum())
         })
         .collect()
