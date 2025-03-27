@@ -37,7 +37,7 @@ pub fn sum_of_squares_with_multi_thread(data: Vec<u32>) -> u128 {
     let threads = setup_thread_pool(data, thread_count);
     threads
         .into_iter()
-        .map(|handle| handle.join().unwrap())
+        .map(|handle| handle.join().expect("Thread panicked. Likely Overflow."))
         .sum()
 }
 
